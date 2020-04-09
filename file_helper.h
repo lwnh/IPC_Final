@@ -7,7 +7,7 @@
    --------------------------- ----------------------------
    1)Yumi Lee
    2)Dongwook Hwang
-   3)Byeongsuk Yoo
+   3)Byeongsuk Yoo               bsyoo@myseneca.ca
 
    +--------------------------------------------------------+
    |                FILE: file_helper.h                     |
