@@ -5,9 +5,9 @@
 
    Fullname                    Seneca Email Address
    --------------------------- ----------------------------
-   1)
-   2)
-   3)
+   1)Yumi Lee
+   2)Dongwook Hwang
+   3)Byeongsuk Yoo
 
    +--------------------------------------------------------+
    |                FILE: file_helper.h                     |
