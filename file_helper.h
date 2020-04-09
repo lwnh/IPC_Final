@@ -6,7 +6,7 @@
    Fullname                    Seneca Email Address
    --------------------------- ----------------------------
    1)Yumi Lee
-   2)Dongwook Hwang
+   2)Dongwook Hwang              dhwang10@myseneca.ca
    3)Byeongsuk Yoo               bsyoo@myseneca.ca
 
    +--------------------------------------------------------+
