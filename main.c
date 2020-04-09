@@ -5,7 +5,7 @@
 
    Fullname                    Seneca Email Address
    --------------------------- ----------------------------
-   1)
+   1) Yumi Lee                  ylee204@myseneca.ca
    2)
    3)
 
