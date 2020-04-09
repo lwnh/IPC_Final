@@ -25,16 +25,63 @@
 
 #include <stdio.h>
 
-/********************************************************/
-/* Define the missing members for the RiderInfo data    */
-/* used to store Rider information read from a file     */
-/********************************************************/
+   /********************************************************/
+   /* Define the missing members for the RiderInfo data    */
+   /* used to store Rider information read from a file     */
+   /********************************************************/
 struct RiderInfo
 {
-	// TODO:  Fill in the missing members:
+    char name[21];
+    int age;
+    char raceLength;
+    char startTime[5];
+    char mountainTime[5];
+    char finishTime[5];
+    char withdrawn;
 };
 
+// readTime: convert time HH:MM into decimal hours
+double readTime(FILE* fp);
 
+// clearKeyboard: clear input buffer
+void clearKeyboard(void);
+
+// pause: to ask users whether to proceed to next step by pushing the enter button
+void pause(void);
+
+// getInt: to make sure if users input demical number
+int getInt(void);
+
+// getIntInRange: to make sure if users input the number within the range of the menu
+int getIntInRange(int min, int max);
+
+// displayWelcome: to diplay welcome message
+void displayWelcome(void);
+
+// menu: to display default menu list and return the number users choose
+int menu(void);
+
+// raceManagerSystem: to execute the functions in the menu
+void raceManagerSystem(void);
+
+// determineCategory: to prompt users to choose one of the categories
+
+// checkCategory: to check if the input-word is between s/S, m/M, l/L 
+
+// displayAllriders: to display all riders in the category
+void displayAllriders(const struct Contact contacts[], int size);
+
+// displayTopriders: to display top 3 riders in the category
+
+// lookupTopriders: to look up top 3 riders in the category
+
+// displayLastriders: to display last 3 riders in the category
+
+// lookupLastriders: to look up last 3 riders in the category
+
+// diplayWinners: to display winners in all category
+
+// lookupWinners: to display last 3 riders in the category
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /*!!!        DO NOT ALTER THE CONTENTS BELOW       !!!*/

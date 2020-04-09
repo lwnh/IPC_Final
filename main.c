@@ -40,5 +40,7 @@ int main(void)
 	//
 	// 3) Generate the user-selected report
 			
+    raceManagerSystem();
+
 	return 0;
 }
