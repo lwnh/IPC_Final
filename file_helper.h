@@ -25,18 +25,18 @@
 
 #include <stdio.h>
 
-   /********************************************************/
-   /* Define the missing members for the RiderInfo data    */
-   /* used to store Rider information read from a file     */
-   /********************************************************/
+/********************************************************/
+/* Define the missing members for the RiderInfo data    */
+/* used to store Rider information read from a file     */
+/********************************************************/
 struct RiderInfo
 {
     char name[21];
     int age;
     char raceLength;
-    char startTime[5];
-    char mountainTime[5];
-    char finishTime[5];
+    double startTime;
+    double mountainTime;
+    double finishTime;
     char withdrawn;
 };
 
