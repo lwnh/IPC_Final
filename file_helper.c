@@ -91,10 +91,10 @@ int readFileRecord(FILE* fp, struct RiderInfo* info)
 void raceManagerSystem(void)
 {
 	struct RiderInfo info[MAXRECORDS] = { {{'\0'}} };
-	int flag = 0, i = 0;
+	int flag = 0;
 
 	FILE* fp = fopen("data.txt", "r");
-	fileLoad(fp, info, MAXRECORDS);
+	flag = fileLoad(fp, info, MAXRECORDS);
 
 	while (flag)
 	{
