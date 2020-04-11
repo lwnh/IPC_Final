@@ -45,12 +45,56 @@ double readTime(FILE* fp)
 	return hour + (min / 60.0);
 }
 
+/********************************************************/
+/* Read all the information on one rider from the valid */
+/* (pre-opened) file and store it in the struct.        */
+/* Return true when end of file has been reached.       */
+/********************************************************/
+int readFileRecord(FILE* fp, struct RiderInfo* info)
+{
+	int result = 1, ch;
+
+	if (!feof(fp))
+	{
+		result = 0;
+
+		// read from file and assign to data structure
+		fscanf(fp, "%[^,]%*c", info->name);
+		fscanf(fp, "%d", &info->age);
+		fscanf(fp, " %c", &info->raceLength);
+		info->startTime = readTime(fp);
+		info->mountainTime = readTime(fp);
+		info->finishTime = readTime(fp);
+
+		// Last Field (withdrawn: may not be present)
+		ch = fgetc(fp);
+		info->withdrawn = 0;
+
+		if (ch == ' ')
+		{
+			ch = fgetc(fp);
+			info->withdrawn = ch == 'W';
+			ch = fgetc(fp);
+		}
+
+		// clear input file buffer until end of line (record):
+		while (!feof(fp) && ch != '\n')
+		{
+			ch = fgetc(fp);
+		}
+	}
+
+	return result;
+}
+
 // raceManagerSystem: to execute the functions in the menu
 void raceManagerSystem(void)
 {
 	struct RiderInfo info[MAXRECORDS] = { {{'\0'}} };
+	int flag = 0, i = 0;
+
 	FILE* fp = fopen("data.txt", "r");
-	int flag = fileLoad(fp, info, MAXRECORDS);
+	fileLoad(fp, info, MAXRECORDS);
 
 	while (flag)
 	{
@@ -112,13 +156,13 @@ void raceManagerSystem(void)
 	}
 }
 
-int fileLoad(FILE* fp, struct Riderinfo* info, int size)
+int fileLoad(FILE* fp, struct RiderInfo* info, int size)
 {
-	int flag, i;
+	int flag = 0, i;
 
 	for (i = 0; i < size; i++)
 	{
-		readFileRecord(fp, &info[i]);
+		flag = readFileRecord(fp, &info[i]);
 	}
 
 	if (flag == 1)
@@ -138,8 +182,6 @@ int fileLoad(FILE* fp, struct Riderinfo* info, int size)
 	return flag;
 }
 
-
-
 // determineCategory: to prompt users to choose one of the categories
 
 // checkCategory: to check if the input-word is between s/S, m/M, l/L 
@@ -158,45 +200,3 @@ void displayAllriders(const struct Contact contacts[], int size);
 // diplayWinners: to display winners in all category
 
 // lookupWinners: to display last 3 riders in the category
-
-/********************************************************/
-/* Read all the information on one rider from the valid */
-/* (pre-opened) file and store it in the struct.        */
-/* Return true when end of file has been reached.       */
-/********************************************************/
-int readFileRecord(FILE* fp, struct RiderInfo* info)
-{
-	int result = 1, ch;
-
-	if (!feof(fp))
-	{
-		result = 0;
-
-		// read from file and assign to data structure
-		fscanf(fp, "%[^,]%*c", info->name);
-		fscanf(fp, "%d", &info->age);
-		fscanf(fp, " %c", &info->raceLength);
-		info->startTime = readTime(fp);
-		info->mountainTime = readTime(fp);
-		info->finishTime = readTime(fp);
-
-		// Last Field (withdrawn: may not be present)
-		ch = fgetc(fp);
-		info->withdrawn = 0;
-
-		if (ch == ' ')
-		{
-			ch = fgetc(fp);
-			info->withdrawn = ch == 'W';
-			ch = fgetc(fp);
-		}
-
-		// clear input file buffer until end of line (record):
-		while (!feof(fp) && ch != '\n')
-		{
-			ch = fgetc(fp);
-		}
-	}
-
-	return result;
-}
