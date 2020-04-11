@@ -44,6 +44,9 @@ int yes(void);
 // displayWelcome: to diplay welcome message
 void displayWelcome(void);
 
+// displayHeader
+void displayHeader(void);
+
 // menu: to display default menu list and return the number users choose
 int menu(void);
 
