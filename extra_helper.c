@@ -90,26 +90,29 @@ int getIntInRange(int min, int max)
 // yes: to make sure yes or no
 int yes(void)
 {
-	char input1, input2;
-	int value, repeatFlag = 1;
+	char input, inputNL;
+	int flag = 1;
 
-	while (repeatFlag)
+	while (flag)
 	{
-		scanf(" %c%c", &input1, &input2);
-		if ((input1 == 'Y' || input1 == 'y' || input1 == 'N' || input1 == 'n') && input2 == '\n')
+		scanf("%c%c", &input, &inputNL);
+
+		if (inputNL != '\n')
 		{
-			repeatFlag = 0;
-			value = (input1 == 'Y' || input1 == 'y') ? 1 : 0;
-		}
-		else
-		{
-			repeatFlag = 1;
 			clearKeyboard();
 			printf("*** INVALID ENTRY *** <Only (Y)es or (N)o are acceptable>: ");
 		}
+		else if (input != 'Y' && input != 'y' && input != 'N' && input != 'n')
+		{
+			printf("*** INVALID ENTRY *** <Only (Y)es or (N)o are acceptable>: ");
+		}
+		else
+		{
+			flag = 0;
+		}
 	}
 
-	return value;
+	return (input == 'Y' || input == 'y') ? 1 : 0;
 }
 
 // displayWelcome: to diplay welcome message
