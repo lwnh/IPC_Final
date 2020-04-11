@@ -43,27 +43,6 @@ struct RiderInfo
 // readTime: convert time HH:MM into decimal hours
 double readTime(FILE* fp);
 
-// clearKeyboard: clear input buffer
-void clearKeyboard(void);
-
-// pause: to ask users whether to proceed to next step by pushing the enter button
-void pause(void);
-
-// getInt: to make sure if users input demical number
-int getInt(void);
-
-// getIntInRange: to make sure if users input the number within the range of the menu
-int getIntInRange(int min, int max);
-
-// yes : to make sure yes or no
-int yes(void);
-
-// displayWelcome: to diplay welcome message
-void displayWelcome(void);
-
-// menu: to display default menu list and return the number users choose
-int menu(void);
-
 // raceManagerSystem: to execute the functions in the menu
 void raceManagerSystem(void);
 

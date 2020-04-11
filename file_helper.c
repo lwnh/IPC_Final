@@ -26,8 +26,9 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include "file_helper.h"
+#include "extra_helper.h"
 
-   //define the maximum number of records
+//define the maximum number of records
 #define MAXRECORDS 5000
 
 /********************************************************/
@@ -43,181 +44,6 @@ double readTime(FILE* fp)
 
 	return hour + (min / 60.0);
 }
-
-/********************************************************/
-/* Read all the information on one rider from the valid */
-/* (pre-opened) file and store it in the struct.        */
-/* Return true when end of file has been reached.       */
-/********************************************************/
-int readFileRecord(FILE* fp, struct RiderInfo* info)
-{
-	int result = 1, ch;
-
-	if (!feof(fp))
-	{
-		result = 0;
-
-		// read from file and assign to data structure
-		fscanf(fp, "%[^,]%*c", info->name);
-		fscanf(fp, "%d", &info->age);
-		fscanf(fp, " %c", &info->raceLength);
-		info->startTime = readTime(fp);
-		info->mountainTime = readTime(fp);
-		info->finishTime = readTime(fp);
-
-		// Last Field (withdrawn: may not be present)
-		ch = fgetc(fp);
-		info->withdrawn = 0;
-
-		if (ch == ' ')
-		{
-			ch = fgetc(fp);
-			info->withdrawn = ch == 'W';
-			ch = fgetc(fp);
-		}
-
-		// clear input file buffer until end of line (record):
-		while (!feof(fp) && ch != '\n')
-		{
-			ch = fgetc(fp);
-		}
-	}
-
-	return result;
-}
-
-// clearKeyboard: clear input buffer
-void clearKeyboard(void)
-{
-	while (getchar() != '\n'); // empty execution code block on purpose
-}
-
-// pause: to ask users whether to proceed to next step by pushing the enter button
-void pause(void)
-{
-	printf("(Press Enter to Continue)");
-	clearKeyboard();
-}
-
-// getInt: to make sure if users input demical number
-int getInt(void)
-{
-	char inputNL;
-	int input, flag = 1;
-
-	while (flag)
-	{
-		scanf("%d%c", &input, &inputNL);
-
-		if (inputNL != '\n')
-		{
-			clearKeyboard();
-			printf("*** INVALID INTEGER *** <Please enter an integer>: ");
-		}
-		else
-		{
-			flag = 0;
-		}
-	}
-
-	return input;
-}
-
-// getIntInRange: to make sure if users input the number within the range of the menu
-int getIntInRange(int min, int max)
-{
-	int flag = 1;
-	int input;
-
-	while (flag)
-	{
-		input = getInt();
-
-		if (input < min || input > max)
-		{
-			printf("*** OUT OF RANGE *** <Enter a number between %d and %d>: ", min, max);
-		}
-		else
-		{
-			flag = 0;
-		}
-	}
-
-	return input;
-}
-
-// yes:
-int yes(void)
-{
-	char input1, input2;
-	int value, repeatFlag = 1;
-
-	while (repeatFlag)
-	{
-		scanf(" %c%c", &input1, &input2);
-		if ((input1 == 'Y' || input1 == 'y' || input1 == 'N' || input1 == 'n') && input2 == '\n')
-		{
-			repeatFlag = 0;
-			value = (input1 == 'Y' || input1 == 'y') ? 1 : 0;
-		}
-		else
-		{
-			repeatFlag = 1;
-			clearKeyboard();
-			printf("*** INVALID ENTRY *** <Only (Y)es or (N)o are acceptable>: ");
-		}
-	}
-
-	return value;
-}
-
-// displayWelcome: to diplay welcome message
-void displayWelcome(void)
-{
-	printf("******************** Seneca Cycling Race Results ********************\n");
-}
-
-int fileLoad(FILE* fp, struct Riderinfo* info, int size)
-{
-	int flag, i;
-
-	for (i = 0; i < size; i++)
-	{
-		readFileRecord(fp, &info[i]);
-	}
-
-	if (flag == 1)
-	{
-		printf("Succeeded to load a file\n");
-		printf("\n");
-		displayWelcome();
-	}
-	else
-	{
-		printf("Failed to load a file\n");
-		printf("Retry after checking a file\n");
-		printf("System will be terminated\n");
-		printf("\n");
-	}
-
-	return flag;
-}
-
-
-// menu: to display default menu list and return the number users choose
-int menu(void)
-{
-	printf("What would you like to do?\n");
-	printf("0 - Exit\n");
-	printf("1 - Print top 3 riders in a category\n");
-	printf("2 - Print all riders in a category\n");
-	printf("3 - Print last 3 riders in a category\n");
-	printf("4 - Print winners in all categories\n");
-	printf(": ");
-
-	return getIntInRange(0, 4);
-}
-
 
 // raceManagerSystem: to execute the functions in the menu
 void raceManagerSystem(void)
@@ -274,7 +100,7 @@ void raceManagerSystem(void)
 			if (yes())
 			{
 				printf("\n");
-				printf("Contact Management System: terminated\n");
+				printf("Race Management System: terminated\n");
 				flag = 0;
 			}
 			else
@@ -285,6 +111,34 @@ void raceManagerSystem(void)
 		}
 	}
 }
+
+int fileLoad(FILE* fp, struct Riderinfo* info, int size)
+{
+	int flag, i;
+
+	for (i = 0; i < size; i++)
+	{
+		readFileRecord(fp, &info[i]);
+	}
+
+	if (flag == 1)
+	{
+		printf("Succeeded to load a file\n");
+		printf("\n");
+		displayWelcome();
+	}
+	else
+	{
+		printf("Failed to load a file\n");
+		printf("Retry after checking a file\n");
+		printf("System will be terminated\n");
+		printf("\n");
+	}
+
+	return flag;
+}
+
+
 
 // determineCategory: to prompt users to choose one of the categories
 
@@ -304,3 +158,45 @@ void displayAllriders(const struct Contact contacts[], int size);
 // diplayWinners: to display winners in all category
 
 // lookupWinners: to display last 3 riders in the category
+
+/********************************************************/
+/* Read all the information on one rider from the valid */
+/* (pre-opened) file and store it in the struct.        */
+/* Return true when end of file has been reached.       */
+/********************************************************/
+int readFileRecord(FILE* fp, struct RiderInfo* info)
+{
+	int result = 1, ch;
+
+	if (!feof(fp))
+	{
+		result = 0;
+
+		// read from file and assign to data structure
+		fscanf(fp, "%[^,]%*c", info->name);
+		fscanf(fp, "%d", &info->age);
+		fscanf(fp, " %c", &info->raceLength);
+		info->startTime = readTime(fp);
+		info->mountainTime = readTime(fp);
+		info->finishTime = readTime(fp);
+
+		// Last Field (withdrawn: may not be present)
+		ch = fgetc(fp);
+		info->withdrawn = 0;
+
+		if (ch == ' ')
+		{
+			ch = fgetc(fp);
+			info->withdrawn = ch == 'W';
+			ch = fgetc(fp);
+		}
+
+		// clear input file buffer until end of line (record):
+		while (!feof(fp) && ch != '\n')
+		{
+			ch = fgetc(fp);
+		}
+	}
+
+	return result;
+}

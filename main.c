@@ -23,6 +23,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "file_helper.h"
+#include "extra_helper.h"
 
 int main(void)
 {
