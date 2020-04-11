@@ -50,10 +50,10 @@ void raceManagerSystem(void);
 int fileLoad(struct RiderInfo* info, int size);
 
 // determineCategory: to prompt users to choose one of the categories
-void determineCategory(void);
+char determineCategory(void);
 
 // checkCategory: to check if the input-word is between s/S, m/M, l/L 
-void checkCategory(void);
+int checkCategory(void);
 
 // displayAllriders: to display all riders in the category
 void displayAllriders(const struct Contact contacts[], int size);

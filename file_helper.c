@@ -28,7 +28,7 @@
 #include "file_helper.h"
 #include "extra_helper.h"
 
-//define the maximum number of records
+   //define the maximum number of records
 #define MAXRECORDS 5000
 
 /********************************************************/
@@ -181,21 +181,67 @@ int fileLoad(struct RiderInfo* info, int size)
 }
 
 // determineCategory: to prompt users to choose one of the categories
-void determineCategory(void) 
+char determineCategory(void)
 {
+	char category= "\0";
 
+	printf("Which category (S, M, L): ");
+	switch (checkCategory())
+	{
+	case 0:
+		category = 'S';
+		break;
+	case 1:
+		category = 'M';
+		break;
+	case 2:
+		category = 'L';
+		break;
+	}
+
+	return category;
 }
 
 // checkCategory: to check if the input-word is between s/S, m/M, l/L 
-void checkCategory(void)
+int checkCategory(void)
 {
+	char input, inputNL;
+	int flag = 1, category;
 
+	while (flag)
+	{
+		scanf(" %c%c", &input, &inputNL);
+		if ((input == 's' || input == 'S' || input == 'm' || input == 'M' ||
+			input == 'l' || input == 'L') && inputNL == '\n')
+		{
+			flag = 0;
+			if (input == 's' || input == 'S')
+			{
+				category = 0;
+			}
+			else if (input == 'm' || input == 'M')
+			{
+				category = 1;
+			}
+			else
+			{
+				category = 2;
+			}
+		}
+		else
+		{
+			clearKeyboard();
+			printf("*** INVALID ENTRY *** <Only S, M, L are acceptable>: ");
+		}
+	}
+
+	return category;
 }
 
 // displayAllriders: to display all riders in the category
 void displayAllriders(const struct Contact contacts[], int size)
 {
-
+	
 }
 
 // displayTopriders: to display top 3 riders in the category
