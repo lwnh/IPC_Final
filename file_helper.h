@@ -46,11 +46,14 @@ double readTime(FILE* fp);
 // raceManagerSystem: to execute the functions in the menu
 void raceManagerSystem(void);
 
-int fileLoad(FILE* fp, struct RiderInfo* info, int size);
+// fileLoad
+int fileLoad(struct RiderInfo* info, int size);
 
 // determineCategory: to prompt users to choose one of the categories
+void determineCategory(void);
 
 // checkCategory: to check if the input-word is between s/S, m/M, l/L 
+void checkCategory(void);
 
 // displayAllriders: to display all riders in the category
 void displayAllriders(const struct Contact contacts[], int size);
@@ -59,14 +62,19 @@ void displayAllriders(const struct Contact contacts[], int size);
 void displayTopriders(struct Riderinfo* info, int size);
 
 // lookupTopriders: to look up top 3 riders in the category
+void lookupTopriders(struct Riderinfo* info, int size);
 
 // displayLastriders: to display last 3 riders in the category
+void displayLastriders(struct Riderinfo* info, int size);
 
 // lookupLastriders: to look up last 3 riders in the category
+void lookupLastriders(struct Riderinfo* info, int size);
 
 // diplayWinners: to display winners in all category
+void diplayWinners(struct Riderinfo* info, int size);
 
 // lookupWinners: to display last 3 riders in the category
+void lookupWinners(struct Riderinfo* info, int size);
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /*!!!        DO NOT ALTER THE CONTENTS BELOW       !!!*/
