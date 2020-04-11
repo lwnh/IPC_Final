@@ -146,6 +146,31 @@ int getIntInRange(int min, int max)
 	return input;
 }
 
+// yes:
+int yes(void)
+{
+	char input1, input2;
+	int value, repeatFlag = 1;
+
+	while (repeatFlag)
+	{
+		scanf(" %c%c", &input1, &input2);
+		if ((input1 == 'Y' || input1 == 'y' || input1 == 'N' || input1 == 'n') && input2 == '\n')
+		{
+			repeatFlag = 0;
+			value = (input1 == 'Y' || input1 == 'y') ? 1 : 0;
+		}
+		else
+		{
+			repeatFlag = 1;
+			clearKeyboard();
+			printf("*** INVALID ENTRY *** <Only (Y)es or (N)o are acceptable>: ");
+		}
+	}
+
+	return value;
+}
+
 // displayWelcome: to diplay welcome message
 void displayWelcome(void)
 {
@@ -183,11 +208,11 @@ int fileLoad(FILE* fp, struct Riderinfo* info, int size)
 int menu(void)
 {
 	printf("What would you like to do?\n");
-	printf("0 ?Exit\n");
-	printf("1 ?Print top 3 riders in a category\n");
-	printf("2 ?Print all riders in a category\n");
-	printf("3 ?Print last 3 riders in a category\n");
-	printf("4 ?Print winners in all categories\n");
+	printf("0 - Exit\n");
+	printf("1 - Print top 3 riders in a category\n");
+	printf("2 - Print all riders in a category\n");
+	printf("3 - Print last 3 riders in a category\n");
+	printf("4 - Print winners in all categories\n");
 	printf(": ");
 
 	return getIntInRange(0, 4);

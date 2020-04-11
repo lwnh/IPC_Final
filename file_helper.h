@@ -55,6 +55,9 @@ int getInt(void);
 // getIntInRange: to make sure if users input the number within the range of the menu
 int getIntInRange(int min, int max);
 
+// yes : to make sure yes or no
+int yes(void);
+
 // displayWelcome: to diplay welcome message
 void displayWelcome(void);
 
