@@ -183,21 +183,22 @@ int fileLoad(struct RiderInfo* info, int size)
 // determineCategory: to prompt users to choose one of the categories
 char determineCategory(void)
 {
-	char category= "\0";
+	char category = "\0";
 
 	printf("Which category (S, M, L): ");
 	switch (checkCategory())
 	{
 	case 0:
-		category = 'S';
+		category = "S";
 		break;
 	case 1:
-		category = 'M';
+		category = "M";
 		break;
 	case 2:
-		category = 'L';
+		category = "L";
 		break;
 	}
+	printf("\n");
 
 	return category;
 }
@@ -238,38 +239,72 @@ int checkCategory(void)
 	return category;
 }
 
-// displayAllriders: to display all riders in the category
-void displayAllriders(const struct Contact contacts[], int size)
+// determineAgeGroup
+char* determineAgeGroup(int age)
 {
-	
+	char* group;
+
+	if (age >= 16 && age <= 20)
+	{
+		group = "Junior";
+	}
+	else if (age >= 21 && age <= 34)
+	{
+		group = "Adult";
+	}
+	else
+	{
+		group = "Senior";
+	}
+
+	return group;
+}
+
+// displayAllriders: to display all riders in the category
+void displayAllriders(struct RiderInfo* info, int size)
+{
+	char category;
+	int i;
+
+	category = determineCategory();
+	displayHeader();
+
+	for (i = 0; i < size; i++)
+	{
+		if (strcmp(info[i].raceLength, category) == 0)
+		{
+			//show all riders
+		}
+	}
+
 }
 
 // displayTopriders: to display top 3 riders in the category
-void displayTopriders(struct Riderinfo* info, int size) {
+void displayTopriders(struct RiderInfo* info, int size) {
 
 }
 
 // lookupTopriders: to look up top 3 riders in the category
-void lookupTopriders(struct Riderinfo* info, int size) {
+void lookupTopriders(struct RiderInfo* info, int size) {
 
 }
 
 // displayLastriders: to display last 3 riders in the category
-void displayLastriders(struct Riderinfo* info, int size) {
+void displayLastriders(struct RiderInfo* info, int size) {
 
 }
 
 // lookupLastriders: to look up last 3 riders in the category
-void lookupLastriders(struct Riderinfo* info, int size) {
+void lookupLastriders(struct RiderInfo* info, int size) {
 
 }
 
 // diplayWinners: to display winners in all category
-void diplayWinners(struct Riderinfo* info, int size) {
+void diplayWinners(struct RiderInfo* info, int size) {
 
 }
 
 // lookupWinners: to display last 3 riders in the category
-void lookupWinners(struct Riderinfo* info, int size) {
+void lookupWinners(struct RiderInfo* info, int size) {
 
 }

@@ -24,6 +24,7 @@
 #define FILE_HELPER_H
 
 #include <stdio.h>
+#include <string.h>
 
 /********************************************************/
 /* Define the missing members for the RiderInfo data    */
@@ -55,26 +56,29 @@ char determineCategory(void);
 // checkCategory: to check if the input-word is between s/S, m/M, l/L 
 int checkCategory(void);
 
+// determineAgeGroup
+char* determineAgeGroup(int age);
+
 // displayAllriders: to display all riders in the category
-void displayAllriders(const struct Contact contacts[], int size);
+void displayAllriders(struct RiderInfo* info, int size);
 
 // displayTopriders: to display top 3 riders in the category
-void displayTopriders(struct Riderinfo* info, int size);
+void displayTopriders(struct RiderInfo* info, int size);
 
 // lookupTopriders: to look up top 3 riders in the category
-void lookupTopriders(struct Riderinfo* info, int size);
+void lookupTopriders(struct RiderInfo* info, int size);
 
 // displayLastriders: to display last 3 riders in the category
-void displayLastriders(struct Riderinfo* info, int size);
+void displayLastriders(struct RiderInfo* info, int size);
 
 // lookupLastriders: to look up last 3 riders in the category
-void lookupLastriders(struct Riderinfo* info, int size);
+void lookupLastriders(struct RiderInfo* info, int size);
 
 // diplayWinners: to display winners in all category
-void diplayWinners(struct Riderinfo* info, int size);
+void diplayWinners(struct RiderInfo* info, int size);
 
 // lookupWinners: to display last 3 riders in the category
-void lookupWinners(struct Riderinfo* info, int size);
+void lookupWinners(struct RiderInfo* info, int size);
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /*!!!        DO NOT ALTER THE CONTENTS BELOW       !!!*/

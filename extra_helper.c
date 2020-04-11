@@ -121,6 +121,13 @@ void displayWelcome(void)
 	printf("******************** Seneca Cycling Race Results ********************\n");
 }
 
+// displayHeader
+void displayHeader(void)
+{
+	printf("Rider                Age Group   Time   Withdrew\n");
+	printf("------------------------------------------------\n");
+}
+
 // menu: to display default menu list and return the number users choose
 int menu(void)
 {
