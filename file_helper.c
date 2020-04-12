@@ -292,7 +292,7 @@ void displayAllriders(struct RiderInfo* info, int size)
 	int i, hour = 0, minute = 0;
 
 	category = determineCategory();
-	displayHeader();
+	displayHeaderall();
 
 	for (i = 0; i < 10; i++)
 	{
@@ -306,8 +306,6 @@ void displayAllriders(struct RiderInfo* info, int size)
 			printf("%11s\n", checkWithdraw(info[i].withdrawn));
 		}		
 	}
-	
-
 }
 
 // displayTopriders: to display top 3 riders in the category

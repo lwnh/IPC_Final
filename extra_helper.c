@@ -122,7 +122,7 @@ void displayWelcome(void)
 }
 
 // displayHeader
-void displayHeader(void)
+void displayHeaderall(void)
 {
 	printf("Rider                Age Group   Time   Withdrew\n");
 	printf("------------------------------------------------\n");
