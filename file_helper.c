@@ -211,9 +211,19 @@ int checkCategory(void)
 
 	while (flag)
 	{
-		scanf(" %c%c", &input, &inputNL);
-		if ((input == 's' || input == 'S' || input == 'm' || input == 'M' ||
-			input == 'l' || input == 'L') && inputNL == '\n')
+		scanf("%c%c", &input, &inputNL);
+
+
+		if (inputNL != '\n')
+		{
+			clearKeyboard();
+			printf("*** INVALID ENTRY *** <Only S, M, L are acceptable>: ");
+		}
+		else if (input != 's' && input != 'S' && input != 'm' && input != 'M' && input != 'l' && input != 'L')
+		{
+			printf("*** INVALID ENTRY *** <Only S, M, L are acceptable>: ");
+		}
+		else
 		{
 			flag = 0;
 			if (input == 's' || input == 'S')
@@ -228,11 +238,6 @@ int checkCategory(void)
 			{
 				category = 2;
 			}
-		}
-		else
-		{
-			clearKeyboard();
-			printf("*** INVALID ENTRY *** <Only S, M, L are acceptable>: ");
 		}
 	}
 
