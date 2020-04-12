@@ -38,7 +38,7 @@ struct RiderInfo
     double startTime;
     double mountainTime;
     double finishTime;
-    char withdrawn;
+    int withdrawn;
 };
 
 // readTime: convert time HH:MM into decimal hours
@@ -58,6 +58,12 @@ int checkCategory(void);
 
 // determineAgeGroup
 char* determineAgeGroup(int age);
+
+// timeCal: to convert time read from file into full length
+void timeCal(double start, double finish);
+
+// checkWithdraw: to check out whether or not athletes withdrew
+char* checkWithdraw(char withdraw);
 
 // displayAllriders: to display all riders in the category
 void displayAllriders(struct RiderInfo* info, int size);
