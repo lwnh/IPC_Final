@@ -307,7 +307,14 @@ void displayAllriders(struct RiderInfo* info, int size)
 
 			printf("%-21s", info[i].name);
 			printf("%9s", determineAgeGroup(info[i].age));
-			printf("%4d:%02d", hour, minute);
+			if (info[i].withdrawn)
+			{
+				printf("    N/A");
+			}
+			else
+			{
+				printf("%4d:%02d", hour, minute);
+			}
 			printf("%11s\n", checkWithdraw(info[i].withdrawn));
 		}		
 	}
