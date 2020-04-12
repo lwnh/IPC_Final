@@ -294,7 +294,7 @@ void displayAllriders(struct RiderInfo* info, int size)
 	category = determineCategory();
 	displayHeaderall();
 
-	for (i = 0; i < 10; i++)
+	for (i = 0; i < size; i++)
 	{
 		if (info[i].raceLength == category)
 		{
