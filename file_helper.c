@@ -183,19 +183,19 @@ int fileLoad(struct RiderInfo* info, int size)
 // determineCategory: to prompt users to choose one of the categories
 char determineCategory(void)
 {
-	char category = "\0";
+	char category = '\0';
 
 	printf("Which category (S, M, L): ");
 	switch (checkCategory())
 	{
 	case 0:
-		category = "S";
+		category = 'S';
 		break;
 	case 1:
-		category = "M";
+		category = 'M';
 		break;
 	case 2:
-		category = "L";
+		category = 'L';
 		break;
 	}
 	printf("\n");
@@ -260,22 +260,53 @@ char* determineAgeGroup(int age)
 	return group;
 }
 
+// timeCal: to convert time read from file into full length
+void timeCal(double start, double finish, int* hour, int* minute)
+{
+	double result = 0;
+	result = (finish - start)+0.005;
+	*hour = (int)result;
+	*minute = (int)((result - *hour) * 60);
+}
+
+char* checkWithdraw(int withdraw)
+{
+	char* result;
+
+	if (withdraw == 1)
+	{
+		result = "Yes";
+	}
+	else
+	{
+		result = "No";
+	}
+
+	return result;
+}
+
 // displayAllriders: to display all riders in the category
 void displayAllriders(struct RiderInfo* info, int size)
 {
 	char category;
-	int i;
+	int i, hour = 0, minute = 0;
 
 	category = determineCategory();
 	displayHeader();
 
 	for (i = 0; i < size; i++)
 	{
-		if (strcmp(info[i].raceLength, category) == 0)
+		if (strcmp(info[i].raceLength, category == 0))
 		{
-			//show all riders
-		}
+			timeCal(info[i].startTime, info[i].finishTime, &hour, &minute);
+
+			printf("%-21s", info[i].name);
+			printf("%9s", determineAgeGroup(info[i].age));
+			printf("%4d:%2d", hour, minute);
+			printf("%11s\n", checkWithdraw(info[i].withdrawn));
+		}		
 	}
+	
 
 }
 

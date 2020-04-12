@@ -60,10 +60,10 @@ int checkCategory(void);
 char* determineAgeGroup(int age);
 
 // timeCal: to convert time read from file into full length
-void timeCal(double start, double finish);
+void timeCal(double start, double finish, int* hour, int* minute);
 
 // checkWithdraw: to check out whether or not athletes withdrew
-char* checkWithdraw(char withdraw);
+char* checkWithdraw(int withdraw);
 
 // displayAllriders: to display all riders in the category
 void displayAllriders(struct RiderInfo* info, int size);
