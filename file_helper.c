@@ -303,8 +303,6 @@ void displayAllriders(struct RiderInfo* info, int size)
 	{
 		if (info[i].raceLength == category)
 		{
-			timeCal(info[i].startTime, info[i].finishTime, &hour, &minute);
-
 			printf("%-21s", info[i].name);
 			printf("%9s", determineAgeGroup(info[i].age));
 			if (info[i].withdrawn)
@@ -313,6 +311,7 @@ void displayAllriders(struct RiderInfo* info, int size)
 			}
 			else
 			{
+				timeCal(info[i].startTime, info[i].finishTime, &hour, &minute);
 				printf("%4d:%02d", hour, minute);
 			}
 			printf("%11s\n", checkWithdraw(info[i].withdrawn));
