@@ -44,8 +44,14 @@ int yes(void);
 // displayWelcome: to diplay welcome message
 void displayWelcome(void);
 
-// displayHeader
+// displayHeader for 'all rider' menu
 void displayHeaderall(void);
+
+// displayHeader for 'top and last' menu
+void displayHeadertoplast(void);
+
+// displayHeader for 'winner' menu
+void displayHeaderwinner(void);
 
 // menu: to display default menu list and return the number users choose
 int menu(void);

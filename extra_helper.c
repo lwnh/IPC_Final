@@ -121,10 +121,24 @@ void displayWelcome(void)
 	printf("******************** Seneca Cycling Race Results ********************\n");
 }
 
-// displayHeader
+// displayHeader for 'all rider' menu
 void displayHeaderall(void)
 {
 	printf("Rider                Age Group   Time   Withdrew\n");
+	printf("------------------------------------------------\n");
+}
+
+// displayHeader for 'top and last' menu
+void displayHeadertoplast(void)
+{
+	printf("Rider                Age Group   Time\n");
+	printf("-------------------------------------\n");
+}
+
+// displayHeader for 'winner' menu
+void displayHeaderwinner(void)
+{
+	printf("Rider                Age Group   Category   Time\n");
 	printf("------------------------------------------------\n");
 }
 
