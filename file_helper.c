@@ -382,9 +382,49 @@ void sortRiders(struct RiderInfo* info, int size)
 // displayLastriders: to display last 3 riders in the category
 void displayLastriders(struct RiderInfo* info, int size)
 {
+	char category;
+	int i, hour = 0, minute = 0, count = 0;
 
+	category = determineCategory();
+	displayHeadertoplast();
+	RsortRiders(info, size);
+
+	for (i = 0; i < size; i++)
+	{
+		if (info[i].raceLength == category && count < 3)
+		{
+			printf("%-21s", info[i].name);
+			printf("%9s", determineAgeGroup(info[i].age));
+			convertTime(getRaceTime(&info[i]), &hour, &minute);
+			printf("%4d:%02d\n", hour, minute);
+			count++;
+		}
+	}
 }
 
+void RsortRiders(struct RiderInfo* info, int size)
+{
+	int i, j;
+	struct RiderInfo temp;
+
+	for (i = 0; i < size-1; i++)
+	{
+		getRaceTime(&info[i]);
+	}
+
+	for (i = 0; i < size-1; i++)
+	{
+		for (j = i + 1; j < size; j++)
+		{
+			if (info[i].raceTime < info[j].raceTime)
+			{
+				temp = info[j];
+				info[j] = info[i];
+				info[i] = temp;
+			}
+		}
+	}
+}
 // lookupLastriders: to look up last 3 riders in the category
 void lookupLastriders(struct RiderInfo* info, int size)
 {

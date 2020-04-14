@@ -87,6 +87,8 @@ void lookupLastriders(struct RiderInfo* info, int size);
 // sortRiders
 void sortRiders(struct RiderInfo* info, int size);
 
+void RsortRiders(struct RiderInfo* info, int size);
+
 // diplayWinners: to display winners in all category
 void diplayWinners(struct RiderInfo* info, int size);
 
