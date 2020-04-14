@@ -39,7 +39,7 @@ struct RiderInfo
     double mountainTime;
     double finishTime;
     double raceTime;
-    int withdraw;
+    int withdrawn;
 };
 
 // readTime: convert time HH:MM into decimal hours
