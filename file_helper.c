@@ -66,6 +66,10 @@ int readFileRecord(FILE* fp, struct RiderInfo* info)
 		info->mountainTime = readTime(fp);
 		info->finishTime = readTime(fp);
 
+		printf("%.2lf   ", info->startTime);
+		printf("%.2lf   ", info->mountainTime);
+		printf("%.2lf\n", info->finishTime);
+
 		// Last Field (withdrawn: may not be present)
 		ch = fgetc(fp);
 		info->withdrawn = 0;
@@ -266,12 +270,23 @@ char* determineAgeGroup(int age)
 }
 
 // timeCal: to convert time read from file into full length
-void timeCal(double start, double finish, int* hour, int* minute)
+double timeCal(double start, double finish)
 {
-	double result = 0;
-	result = (finish - start)+0.005;
-	*hour = (int)result;
-	*minute = (int)((result - *hour) * 60);
+	return (finish - start) + 0.005;
+}
+
+// convertTime: to convert time readability
+void convertTime(double time, int* hour, int* minute)
+{
+	*hour = (int)time;
+	*minute = (int)((time - *hour) * 60);
+}
+
+// getRaceTime : to store calculated race time
+double getRaceTime(struct RiderInfo* info)
+{
+	info->raceTime = timeCal(info->startTime, info->finishTime);
+	return info->raceTime;
 }
 
 char* checkWithdraw(int withdraw)
@@ -311,11 +326,11 @@ void displayAllriders(struct RiderInfo* info, int size)
 			}
 			else
 			{
-				timeCal(info[i].startTime, info[i].finishTime, &hour, &minute);
+				convertTime(getRaceTime(&info[i]), &hour, &minute);
 				printf("%4d:%02d", hour, minute);
 			}
 			printf("%11s\n", checkWithdraw(info[i].withdrawn));
-		}		
+		}
 	}
 }
 

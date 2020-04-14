@@ -38,6 +38,7 @@ struct RiderInfo
     double startTime;
     double mountainTime;
     double finishTime;
+    double raceTime;
     int withdrawn;
 };
 
@@ -60,7 +61,13 @@ int checkCategory(void);
 char* determineAgeGroup(int age);
 
 // timeCal: to convert time read from file into full length
-void timeCal(double start, double finish, int* hour, int* minute);
+double timeCal(double start, double finish);
+
+// convertTime: to convert time readability
+void convertTime(double time, int* hour, int* minute);
+
+// getRaceTime : to store calculated race time
+double getRaceTime(struct RiderInfo* info);
 
 // checkWithdraw: to check out whether or not athletes withdrew
 char* checkWithdraw(int withdraw);
