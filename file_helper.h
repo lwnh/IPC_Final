@@ -78,9 +78,6 @@ void displayAllriders(struct RiderInfo* info, int size);
 // displayTopriders: to display top 3 riders in the category
 void displayTopriders(struct RiderInfo* info, int size);
 
-// lookupTopriders: to look up top 3 riders in the category
-void lookupTopriders(struct RiderInfo* info, int size);
-
 // displayLastriders: to display last 3 riders in the category
 void displayLastriders(struct RiderInfo* info, int size);
 

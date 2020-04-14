@@ -309,6 +309,7 @@ void displayAllriders(struct RiderInfo* info, int size)
 
 	category = determineCategory();
 	displayHeaderall();
+	sortRiders(info, size);
 
 	for (i = 0; i < size; i++)
 	{
@@ -334,28 +335,23 @@ void displayAllriders(struct RiderInfo* info, int size)
 void displayTopriders(struct RiderInfo* info, int size)
 {
 	char category;
-	int i, hour = 0, minute = 0;
+	int i, hour = 0, minute = 0, count = 0;
 
 	category = determineCategory();
 	displayHeadertoplast();
-
 	sortRiders(info, size);
+
 	for (i = 0; i < size; i++)
 	{
-		if (info[i].raceLength == category)
+		if (info[i].raceLength == category && count < 3)
 		{
 			printf("%-21s", info[i].name);
 			printf("%9s", determineAgeGroup(info[i].age));
 			convertTime(getRaceTime(&info[i]), &hour, &minute);
 			printf("%4d:%02d\n", hour, minute);
+			count++;
 		}
 	}
-}
-
-// lookupTopriders: to look up top 3 riders in the category
-void lookupTopriders(struct RiderInfo* info, int size)
-{
-
 }
 
 // sortRiders
