@@ -365,7 +365,7 @@ void sortRiders(struct RiderInfo* info, int size)
 		getRaceTime(&info[i]);
 	}
 
-	for (i = 0; i < size; i++)
+	for (i = 0; i < size - 1; i++)
 	{
 		for (j = i + 1; j < size; j++)
 		{
@@ -407,12 +407,12 @@ void RsortRiders(struct RiderInfo* info, int size)
 	int i, j;
 	struct RiderInfo temp;
 
-	for (i = 0; i < size-1; i++)
+	for (i = 0; i < size; i++)
 	{
 		getRaceTime(&info[i]);
 	}
 
-	for (i = 0; i < size-1; i++)
+	for (i = 0; i < size - 1; i++)
 	{
 		for (j = i + 1; j < size; j++)
 		{
