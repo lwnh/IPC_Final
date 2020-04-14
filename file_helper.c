@@ -331,31 +331,67 @@ void displayAllriders(struct RiderInfo* info, int size)
 }
 
 // displayTopriders: to display top 3 riders in the category
-void displayTopriders(struct RiderInfo* info, int size) {
-
+void displayTopriders(struct RiderInfo* info, int size) 
+{
+	
 }
 
 // lookupTopriders: to look up top 3 riders in the category
-void lookupTopriders(struct RiderInfo* info, int size) {
+void lookupTopriders(struct RiderInfo* info, int size) 
+{
+	
+}
 
+// sortRiders
+void sortRiders(struct RiderInfo* info, int size, char category)
+{
+	int i, j;
+	double time1 = 0, time2 = 0;
+	struct RiderInfo temp;
+
+	for (i = 0; i < size; i++)
+	{
+		if (info[i].raceLength == category)
+		{
+			time1 = getRaceTime(&info[i]);
+			for (j = i + 1; j < size; j++)
+			{
+				if (info[j].raceLength == category)
+				{
+					time2 = getRaceTime(&info[j]);
+
+					if (time1 > time2)
+					{
+						temp = info[i];
+						info[i] = info[j];
+						info[j] = temp;
+					}
+				}
+			}
+		}
+	}
 }
 
 // displayLastriders: to display last 3 riders in the category
-void displayLastriders(struct RiderInfo* info, int size) {
+void displayLastriders(struct RiderInfo* info, int size) 
+{
 
 }
 
 // lookupLastriders: to look up last 3 riders in the category
-void lookupLastriders(struct RiderInfo* info, int size) {
+void lookupLastriders(struct RiderInfo* info, int size) 
+{
 
 }
 
 // diplayWinners: to display winners in all category
-void diplayWinners(struct RiderInfo* info, int size) {
+void diplayWinners(struct RiderInfo* info, int size) 
+{
 
 }
 
 // lookupWinners: to display last 3 riders in the category
-void lookupWinners(struct RiderInfo* info, int size) {
+void lookupWinners(struct RiderInfo* info, int size) 
+{
 
 }

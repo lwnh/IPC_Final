@@ -87,6 +87,9 @@ void displayLastriders(struct RiderInfo* info, int size);
 // lookupLastriders: to look up last 3 riders in the category
 void lookupLastriders(struct RiderInfo* info, int size);
 
+// sortRiders
+void sortRiders(struct RiderInfo* info, int size, char category);
+
 // diplayWinners: to display winners in all category
 void diplayWinners(struct RiderInfo* info, int size);
 
