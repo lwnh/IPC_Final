@@ -66,10 +66,6 @@ int readFileRecord(FILE* fp, struct RiderInfo* info)
 		info->mountainTime = readTime(fp);
 		info->finishTime = readTime(fp);
 
-		printf("%.2lf   ", info->startTime);
-		printf("%.2lf   ", info->mountainTime);
-		printf("%.2lf\n", info->finishTime);
-
 		// Last Field (withdrawn: may not be present)
 		ch = fgetc(fp);
 		info->withdrawn = 0;
