@@ -38,7 +38,7 @@ struct RiderInfo
     double startTime;
     double mountainTime;
     double finishTime;
-    double raceTime;
+    double raceTime; // finishTime -startTime (calculated by getRaceTime function)
     int withdrawn;
 };
 
@@ -81,19 +81,22 @@ void displayTopriders(struct RiderInfo* info, int size);
 // displayLastriders: to display last 3 riders in the category
 void displayLastriders(struct RiderInfo* info, int size);
 
-// lookupLastriders: to look up last 3 riders in the category
-void lookupLastriders(struct RiderInfo* info, int size);
-
 // sortRiders
 void sortRiders(struct RiderInfo* info, int size);
 
 void RsortRiders(struct RiderInfo* info, int size);
 
-// diplayWinners: to display winners in all category
-void diplayWinners(struct RiderInfo* info, int size);
+// to display the winner in the S length
+void displaySwinner(struct RiderInfo* info, int size);
 
-// lookupWinners: to display last 3 riders in the category
-void lookupWinners(struct RiderInfo* info, int size);
+// to display the winner in the M length
+void displayMwinner(struct RiderInfo* info, int size);
+
+// to display the winner in the L length
+void displayLwinner(struct RiderInfo* info, int size);
+
+// to display winners in all category
+void diplayWinners(struct RiderInfo* info, int size);
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /*!!!        DO NOT ALTER THE CONTENTS BELOW       !!!*/
