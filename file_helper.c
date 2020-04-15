@@ -343,7 +343,7 @@ void displayTopriders(struct RiderInfo* info, int size)
 
 	for (i = 0; i < size; i++)
 	{
-		if (info[i].raceLength == category && count < 3)
+		if (info[i].raceLength == category && count < 3 && info[i].withdrawn == 0)
 		{
 			printf("%-21s", info[i].name);
 			printf("%9s", determineAgeGroup(info[i].age));
@@ -391,7 +391,7 @@ void displayLastriders(struct RiderInfo* info, int size)
 
 	for (i = 0; i < size; i++)
 	{
-		if (info[i].raceLength == category && count < 3)
+		if (info[i].raceLength == category && count < 3 && info[i].withdrawn == 0)
 		{
 			printf("%-21s", info[i].name);
 			printf("%9s", determineAgeGroup(info[i].age));
