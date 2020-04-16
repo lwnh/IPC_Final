@@ -152,7 +152,7 @@ int fileLoad(struct RiderInfo* info, int size)
 
 	if (flag == 1)
 	{
-		printf("Succeeded to load a file\n\n");
+		//printf("Succeeded to load a file\n\n");
 		setRaceTime(info, MAXRECORDS);
 		displayWelcome();
 	}
@@ -320,8 +320,8 @@ void displayLastRiders(struct RiderInfo* info, int size)
 	}
 }
 
-// diplayRider: to display a rider
-void diplayRider(const struct RiderInfo* info, int category)
+// displayRider: to display a rider
+void displayRider(const struct RiderInfo* info, int category)
 {
 	int hour = 0, minute = 0;
 
@@ -329,7 +329,7 @@ void diplayRider(const struct RiderInfo* info, int category)
 	printf("%9s", getAgeGroup(info->age));
 	if (category)
 	{
-		printf("%8d km", category);
+		printf("%8d km", category);		// only show with displayWinners 
 	}
 	convertTime(info->raceTime, &hour, &minute);
 	printf("%4d:%02d\n", hour, minute);
@@ -355,8 +355,8 @@ void sortRiders(struct RiderInfo* info, int size)
 	}
 }
 
-// diplayWinners: to display winners in all category
-void diplayWinners(const struct RiderInfo* info, int size)
+// displayWinners: to display winners in all category
+void displayWinners(const struct RiderInfo* info, int size)
 {
 	displayHeaderwinner();
 	displayWinner(info, size, 'S');

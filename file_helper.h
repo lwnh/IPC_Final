@@ -82,14 +82,14 @@ void displayTopRiders(struct RiderInfo* info, int size);
 // displayLastRiders: to display last riders in the category
 void displayLastRiders(struct RiderInfo* info, int size);
 
-// diplayRider: to display a rider
-void diplayRider(const struct RiderInfo* info, int category);
+// displayRider: to display a rider
+void displayRider(const struct RiderInfo* info, int category);
 
 // sortRiders 
 void sortRiders(struct RiderInfo* info, int size);
 
-// diplayWinners: to display winners in all category
-void diplayWinners(const struct RiderInfo* info, int size);
+// displayWinners: to display winners in all category
+void displayWinners(const struct RiderInfo* info, int size);
 
 // displayWinner: to display a winner
 void displayWinner(const struct RiderInfo* info, int size, char category);
