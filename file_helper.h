@@ -79,6 +79,9 @@ void displayTopriders(struct RiderInfo* info, int size);
 // displayLastriders: to display last 3 riders in the category
 void displayLastriders(struct RiderInfo* info, int size);
 
+// diplayRider : to display only one rider
+void diplayRider(struct RiderInfo* info, int category);
+
 // sortRiders 
 void sortRiders(struct RiderInfo* info, int size);
 

@@ -28,8 +28,12 @@
 #include "file_helper.h"
 #include "extra_helper.h"
 
-   //define the maximum number of records
+//define the maximum number of records
 #define MAXRECORDS 5000
+
+#define SHORT_DISTANCE 50
+#define MEDIUM_DISTANCE 75
+#define LONG_DISTANCE 100
 
 /********************************************************/
 /* Read from the opened file the time (HH:MM) parts of  */
@@ -244,18 +248,7 @@ void setRaceTime(struct RiderInfo* info, int size)
 
 char* checkWithdraw(int withdraw)
 {
-	char* result;
-
-	if (withdraw == 1)
-	{
-		result = "Yes";
-	}
-	else
-	{
-		result = "No";
-	}
-
-	return result;
+	return withdraw == 1 ? "Yes" : "No";
 }
 
 // displayAllriders: to display all riders in the category
@@ -292,7 +285,7 @@ void displayAllriders(struct RiderInfo* info, int size)
 void displayTopriders(struct RiderInfo* info, int size)
 {
 	char category;
-	int i, hour = 0, minute = 0, count = 0;
+	int i, count = 0;
 
 	category = getCategory();
 	displayHeadertoplast();
@@ -300,15 +293,46 @@ void displayTopriders(struct RiderInfo* info, int size)
 
 	for (i = 0; i < size; i++)
 	{
-		if (info[i].raceLength == category && count < 3 && info[i].withdrawn == 0)
+		if (info[i].raceLength == category && count < 3 && !info[i].withdrawn)
 		{
-			printf("%-21s", info[i].name);
-			printf("%9s", getAgeGroup(info[i].age));
-			convertTime(info[i].raceTime, &hour, &minute);
-			printf("%4d:%02d\n", hour, minute);
+			diplayRider(&info[i], 0);
 			count++;
 		}
 	}
+}
+
+// displayLastriders: to display last 3 riders in the category
+void displayLastriders(struct RiderInfo* info, int size)
+{
+	char category;
+	int i, count = 0;
+
+	category = getCategory();
+	displayHeadertoplast();
+	RsortRiders(info, size);
+
+	for (i = 0; i < size; i++)
+	{
+		if (info[i].raceLength == category && count < 3 && !info[i].withdrawn)
+		{
+			diplayRider(&info[i], 0);
+			count++;
+		}
+	}
+}
+
+// diplayRider : to display only one rider
+void diplayRider(struct RiderInfo* info, int category)
+{
+	int hour = 0, minute = 0;
+	printf("%-21s", info->name);
+	printf("%9s", getAgeGroup(info->age));
+	if (category)
+	{
+		printf("%8d km", category);
+	}
+	convertTime(info->raceTime, &hour, &minute);
+	printf("%4d:%02d\n", hour, minute);
 }
 
 // sortRiders
@@ -327,29 +351,6 @@ void sortRiders(struct RiderInfo* info, int size)
 				info[i] = info[j];
 				info[j] = temp;
 			}
-		}
-	}
-}
-
-// displayLastriders: to display last 3 riders in the category
-void displayLastriders(struct RiderInfo* info, int size)
-{
-	char category;
-	int i, hour = 0, minute = 0, count = 0;
-
-	category = getCategory();
-	displayHeadertoplast();
-	RsortRiders(info, size);
-
-	for (i = 0; i < size; i++)
-	{
-		if (info[i].raceLength == category && count < 3 && info[i].withdrawn == 0)
-		{
-			printf("%-21s", info[i].name);
-			printf("%9s", getAgeGroup(info[i].age));
-			convertTime(info[i].raceTime, &hour, &minute);
-			printf("%4d:%02d\n", hour, minute);
-			count++;
 		}
 	}
 }
@@ -376,11 +377,11 @@ void RsortRiders(struct RiderInfo* info, int size)
 // to display the winner in the S length
 void displaySwinner(struct RiderInfo* info, int size)
 {
-	int i, winner = 0, hour, minute, flag = 0;
+	int i, winner = 0, flag = 0;
 
 	for (i = 0; i < size; i++)
 	{
-		if (info[i].raceLength == 'S' && info[i].withdrawn == 0)
+		if (info[i].raceLength == 'S' && !info[i].withdrawn)
 		{
 			if (flag == 0)
 			{
@@ -396,23 +397,17 @@ void displaySwinner(struct RiderInfo* info, int size)
 			}
 		}
 	}
-
-	//printf("Rider                Age Group   Category   Time\n");
-	printf("%-21s", info[winner].name);
-	printf("%9s", getAgeGroup(info[winner].age));
-	printf("      50 km");
-	convertTime(info[winner].raceTime, &hour, &minute);
-	printf("%4d:%02d\n", hour, minute);
+	diplayRider(&info[winner], SHORT_DISTANCE);
 }
 
 // to display the winner in the M length
 void displayMwinner(struct RiderInfo* info, int size)
 {
-	int i, winner = 0, hour, minute, flag = 0;
+	int i, winner = 0, flag = 0;
 
 	for (i = 0; i < size; i++)
 	{
-		if (info[i].raceLength == 'M' && info[i].withdrawn == 0)
+		if (info[i].raceLength == 'M' && !info[i].withdrawn)
 		{
 			if (flag == 0)
 			{
@@ -428,23 +423,17 @@ void displayMwinner(struct RiderInfo* info, int size)
 			}
 		}
 	}
-
-	//printf("Rider                Age Group   Category   Time\n");
-	printf("%-21s", info[winner].name);
-	printf("%9s", getAgeGroup(info[winner].age));
-	printf("      75 km");
-	convertTime(info[winner].raceTime, &hour, &minute);
-	printf("%4d:%02d\n", hour, minute);
+	diplayRider(&info[winner], MEDIUM_DISTANCE);
 }
 
 // to display the winner in the L length
 void displayLwinner(struct RiderInfo* info, int size)
 {
-	int i, winner = 0, hour, minute, flag = 0;
+	int i, winner = 0, flag = 0;
 
 	for (i = 0; i < size; i++)
 	{
-		if (info[i].raceLength == 'L' && info[i].withdrawn == 0)
+		if (info[i].raceLength == 'L' && !info[i].withdrawn)
 		{
 			if (flag == 0)
 			{
@@ -461,13 +450,7 @@ void displayLwinner(struct RiderInfo* info, int size)
 			}
 		}
 	}
-
-	//printf("Rider                Age Group   Category   Time\n");
-	printf("%-21s", info[winner].name);
-	printf("%9s", getAgeGroup(info[winner].age));
-	printf("     100 km");
-	convertTime(info[winner].raceTime, &hour, &minute);
-	printf("%4d:%02d\n", hour, minute);
+	diplayRider(&info[winner], LONG_DISTANCE);
 }
 
 // to display winners in all category
