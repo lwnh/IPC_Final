@@ -99,8 +99,6 @@ void raceManagerSystem(void)
 
 	while (flag)
 	{
-		sortRiders(info, MAXRECORDS);
-
 		switch (menu())
 		{
 		case 1:
@@ -150,10 +148,11 @@ int fileLoad(struct RiderInfo* info, int size)
 		flag = readFileRecord(fp, &info[i]);
 	}
 
-	if (flag == 1)
+	if (flag)
 	{
 		//printf("Succeeded to load a file\n\n");
 		setRaceTime(info, MAXRECORDS);
+		sortRiders(info, MAXRECORDS);
 		displayWelcome();
 	}
 	else
