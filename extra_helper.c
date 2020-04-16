@@ -27,8 +27,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "extra_helper.h"
 
-#define RIDER_NUMBER 3
-
 // clearKeyboard: clear input buffer
 void clearKeyboard(void)
 {

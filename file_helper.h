@@ -27,6 +27,9 @@
 #include <string.h>
 #include <ctype.h>
 
+   //define the number of best or worst
+#define RIDER_NUMBER 3
+
 /********************************************************/
 /* Define the missing members for the RiderInfo data    */
 /* used to store Rider information read from a file     */

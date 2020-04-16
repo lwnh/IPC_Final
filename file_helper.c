@@ -35,9 +35,6 @@
 #define MEDIUM_DISTANCE 75
 #define LONG_DISTANCE 100
 
-	//define the number of best or worst
-#define RIDER_NUMBER 3
-
 /********************************************************/
 /* Read from the opened file the time (HH:MM) parts of  */
 /* the record and return the time as decimal hours      */
