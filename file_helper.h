@@ -88,17 +88,11 @@ void sortRiders(struct RiderInfo* info, int size);
 // RsortRiders : reverse sort
 void RsortRiders(struct RiderInfo* info, int size);
 
-// to display the winner in the S length
-void displaySwinner(struct RiderInfo* info, int size);
-
-// to display the winner in the M length
-void displayMwinner(struct RiderInfo* info, int size);
-
-// to display the winner in the L length
-void displayLwinner(struct RiderInfo* info, int size);
-
 // to display winners in all category
 void diplayWinners(struct RiderInfo* info, int size);
+
+// to display a winner
+void displayWinner(struct RiderInfo* info, int size, char category);
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /*!!!        DO NOT ALTER THE CONTENTS BELOW       !!!*/

@@ -374,16 +374,15 @@ void RsortRiders(struct RiderInfo* info, int size)
 	}
 }
 
-// to display the winner in the S length
-void displaySwinner(struct RiderInfo* info, int size)
+void displayWinner(struct RiderInfo* info, int size, char category)
 {
 	int i, winner = 0, flag = 0;
 
 	for (i = 0; i < size; i++)
 	{
-		if (info[i].raceLength == 'S' && !info[i].withdrawn)
+		if (info[i].raceLength == category && !info[i].withdrawn)
 		{
-			if (flag == 0)
+			if (!flag)
 			{
 				winner = i;
 				flag = 1;
@@ -397,67 +396,25 @@ void displaySwinner(struct RiderInfo* info, int size)
 			}
 		}
 	}
-	diplayRider(&info[winner], SHORT_DISTANCE);
-}
-
-// to display the winner in the M length
-void displayMwinner(struct RiderInfo* info, int size)
-{
-	int i, winner = 0, flag = 0;
-
-	for (i = 0; i < size; i++)
+	if (category == 'S')
 	{
-		if (info[i].raceLength == 'M' && !info[i].withdrawn)
-		{
-			if (flag == 0)
-			{
-				winner = i;
-				flag = 1;
-			}
-			else
-			{
-				if (info[i].raceTime < info[winner].raceTime)
-				{
-					winner = i;
-				}
-			}
-		}
-	}
-	diplayRider(&info[winner], MEDIUM_DISTANCE);
-}
-
-// to display the winner in the L length
-void displayLwinner(struct RiderInfo* info, int size)
-{
-	int i, winner = 0, flag = 0;
-
-	for (i = 0; i < size; i++)
+		diplayRider(&info[winner], SHORT_DISTANCE);
+	} 
+	else if (category == 'M')
 	{
-		if (info[i].raceLength == 'L' && !info[i].withdrawn)
-		{
-			if (flag == 0)
-			{
-				winner = i;
-				flag = 1;
-			}
-			else
-			{
-
-				if (info[i].raceTime < info[winner].raceTime)
-				{
-					winner = i;
-				}
-			}
-		}
+		diplayRider(&info[winner], MEDIUM_DISTANCE);
 	}
-	diplayRider(&info[winner], LONG_DISTANCE);
+	else
+	{
+		diplayRider(&info[winner], LONG_DISTANCE);
+	}
 }
 
 // to display winners in all category
 void diplayWinners(struct RiderInfo* info, int size)
 {
 	displayHeaderwinner();
-	displaySwinner(info, size);
-	displayMwinner(info, size);
-	displayLwinner(info, size);
+	displayWinner(info, size, 'S');
+	displayWinner(info, size, 'M');
+	displayWinner(info, size, 'L');
 }
