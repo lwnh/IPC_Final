@@ -153,9 +153,8 @@ int fileLoad(struct RiderInfo* info, int size)
 
 	if (flag == 1)
 	{
-		printf("Succeeded to load a file\n");
-		printf("\n");
-		getRaceTime(info, MAXRECORDS);
+		printf("Succeeded to load a file\n\n");
+		setRaceTime(info, MAXRECORDS);
 		displayWelcome();
 	}
 	else
@@ -233,8 +232,8 @@ void convertTime(double time, int* hour, int* minute)
 	*minute = (int)((time - *hour) * 60);
 }
 
-// getRaceTime : to store calculated race time
-void getRaceTime(struct RiderInfo* info, int size)
+// setRaceTime : to store calculated race time
+void setRaceTime(struct RiderInfo* info, int size)
 {
 	int i;
 	for (i = 0; i < size; i++)

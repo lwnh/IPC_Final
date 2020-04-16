@@ -65,7 +65,7 @@ char* determineAgeGroup(int age);
 void convertTime(double time, int* hour, int* minute);
 
 // getRaceTime : to store calculated race time
-void getRaceTime(struct RiderInfo* info, int size);
+void setRaceTime(struct RiderInfo* info, int size);
 
 // checkWithdraw: to check out whether or not athletes withdrew
 char* checkWithdraw(int withdraw);
