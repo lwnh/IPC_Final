@@ -93,6 +93,7 @@ void raceManagerSystem(void)
 	struct RiderInfo info[MAXRECORDS] = { {{'\0'}} };
 	int flag = fileLoad(info, MAXRECORDS);
 
+
 	while (flag)
 	{
 		switch (menu())
@@ -167,6 +168,7 @@ int fileLoad(struct RiderInfo* info, int size)
 	{
 		printf("Succeeded to load a file\n");
 		printf("\n");
+		getRaceTime(info, MAXRECORDS);
 		displayWelcome();
 	}
 	else
@@ -265,12 +267,6 @@ char* determineAgeGroup(int age)
 	return group;
 }
 
-// timeCal: to convert time read from file into full length
-double timeCal(double start, double finish)
-{
-	return (finish - start) + 0.005;
-}
-
 // convertTime: to convert time human-readable
 void convertTime(double time, int* hour, int* minute)
 {
@@ -279,10 +275,13 @@ void convertTime(double time, int* hour, int* minute)
 }
 
 // getRaceTime : to store calculated race time
-double getRaceTime(struct RiderInfo* info)
+void getRaceTime(struct RiderInfo* info, int size)
 {
-	info->raceTime = timeCal(info->startTime, info->finishTime);
-	return info->raceTime;
+	int i;
+	for (i = 0; i < size; i++)
+	{
+		info[i].raceTime = (info[i].finishTime - info[i].startTime) + 0.005;
+	}
 }
 
 char* checkWithdraw(int withdraw)
@@ -323,7 +322,7 @@ void displayAllriders(struct RiderInfo* info, int size)
 			}
 			else
 			{
-				convertTime(getRaceTime(&info[i]), &hour, &minute);
+				convertTime(info[i].raceTime, &hour, &minute);
 				printf("%4d:%02d", hour, minute);
 			}
 			printf("%11s\n", checkWithdraw(info[i].withdrawn));
@@ -347,7 +346,7 @@ void displayTopriders(struct RiderInfo* info, int size)
 		{
 			printf("%-21s", info[i].name);
 			printf("%9s", determineAgeGroup(info[i].age));
-			convertTime(getRaceTime(&info[i]), &hour, &minute);
+			convertTime(info[i].raceTime, &hour, &minute);
 			printf("%4d:%02d\n", hour, minute);
 			count++;
 		}
@@ -359,11 +358,6 @@ void sortRiders(struct RiderInfo* info, int size)
 {
 	int i, j;
 	struct RiderInfo temp;
-
-	for (i = 0; i < size; i++)
-	{
-		getRaceTime(&info[i]);
-	}
 
 	for (i = 0; i < size - 1; i++)
 	{
@@ -395,7 +389,7 @@ void displayLastriders(struct RiderInfo* info, int size)
 		{
 			printf("%-21s", info[i].name);
 			printf("%9s", determineAgeGroup(info[i].age));
-			convertTime(getRaceTime(&info[i]), &hour, &minute);
+			convertTime(info[i].raceTime, &hour, &minute);
 			printf("%4d:%02d\n", hour, minute);
 			count++;
 		}
@@ -406,11 +400,6 @@ void RsortRiders(struct RiderInfo* info, int size)
 {
 	int i, j;
 	struct RiderInfo temp;
-
-	for (i = 0; i < size; i++)
-	{
-		getRaceTime(&info[i]);
-	}
 
 	for (i = 0; i < size - 1; i++)
 	{
@@ -430,11 +419,6 @@ void RsortRiders(struct RiderInfo* info, int size)
 void displaySwinner(struct RiderInfo* info, int size)
 {
 	int i, winner = 0, hour, minute, flag = 0;
-
-	for (i = 0; i < size; i++)
-	{
-		getRaceTime(&info[i]);
-	}
 
 	for (i = 0; i < size; i++)
 	{
@@ -459,7 +443,7 @@ void displaySwinner(struct RiderInfo* info, int size)
 	printf("%-21s", info[winner].name);
 	printf("%9s", determineAgeGroup(info[winner].age));
 	printf("      50 km");
-	convertTime(getRaceTime(&info[winner]), &hour, &minute);
+	convertTime(info[winner].raceTime, &hour, &minute);
 	printf("%4d:%02d\n", hour, minute);
 }
 
@@ -467,11 +451,6 @@ void displaySwinner(struct RiderInfo* info, int size)
 void displayMwinner(struct RiderInfo* info, int size)
 {
 	int i, winner = 0, hour, minute, flag = 0;
-	
-	for (i = 0; i < size; i++)
-	{
-		getRaceTime(&info[i]);
-	}
 
 	for (i = 0; i < size; i++)
 	{
@@ -496,7 +475,7 @@ void displayMwinner(struct RiderInfo* info, int size)
 	printf("%-21s", info[winner].name);
 	printf("%9s", determineAgeGroup(info[winner].age));
 	printf("      75 km");
-	convertTime(getRaceTime(&info[winner]), &hour, &minute);
+	convertTime(info[winner].raceTime, &hour, &minute);
 	printf("%4d:%02d\n", hour, minute);
 }
 
@@ -504,11 +483,6 @@ void displayMwinner(struct RiderInfo* info, int size)
 void displayLwinner(struct RiderInfo* info, int size)
 {
 	int i, winner = 0, hour, minute, flag = 0;
-	
-	for (i = 0; i < size; i++)
-	{
-		getRaceTime(&info[i]);
-	}
 
 	for (i = 0; i < size; i++)
 	{
@@ -534,7 +508,7 @@ void displayLwinner(struct RiderInfo* info, int size)
 	printf("%-21s", info[winner].name);
 	printf("%9s", determineAgeGroup(info[winner].age));
 	printf("     100 km");
-	convertTime(getRaceTime(&info[winner]), &hour, &minute);
+	convertTime(info[winner].raceTime, &hour, &minute);
 	printf("%4d:%02d\n", hour, minute);
 }
 

@@ -60,14 +60,11 @@ int checkCategory(void);
 // determineAgeGroup
 char* determineAgeGroup(int age);
 
-// timeCal: to convert time read from file into full length
-double timeCal(double start, double finish);
-
 // convertTime: to convert time readability
 void convertTime(double time, int* hour, int* minute);
 
 // getRaceTime : to store calculated race time
-double getRaceTime(struct RiderInfo* info);
+void getRaceTime(struct RiderInfo* info, int size);
 
 // checkWithdraw: to check out whether or not athletes withdrew
 char* checkWithdraw(int withdraw);
