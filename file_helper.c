@@ -35,6 +35,9 @@
 #define MEDIUM_DISTANCE 75
 #define LONG_DISTANCE 100
 
+	//define the number of best or worst
+#define RIDER_NUMBER 3
+
 /********************************************************/
 /* Read from the opened file the time (HH:MM) parts of  */
 /* the record and return the time as decimal hours      */
@@ -99,11 +102,13 @@ void raceManagerSystem(void)
 
 	while (flag)
 	{
+		sortRiders(info, MAXRECORDS);
+
 		switch (menu())
 		{
 		case 1:
 			printf("\n");
-			displayThreeRiders(info, MAXRECORDS, 1);
+			displayTopRiders(info, MAXRECORDS);
 			printf("\n");
 			pause();
 			printf("\n");
@@ -117,7 +122,7 @@ void raceManagerSystem(void)
 			break;
 		case 3:
 			printf("\n");
-			displayThreeRiders(info, MAXRECORDS, 0);
+			displayLastRiders(info, MAXRECORDS);
 			printf("\n");
 			pause();
 			printf("\n");
@@ -261,7 +266,6 @@ void displayAllriders(struct RiderInfo* info, int size)
 
 	category = getCategory();
 	displayHeaderall();
-	sortRiders(info, size);
 
 	for (i = 0; i < size; i++)
 	{
@@ -283,19 +287,18 @@ void displayAllriders(struct RiderInfo* info, int size)
 	}
 }
 
-// displayThreeRiders: to display top or last 3 riders in the category
-void displayThreeRiders(struct RiderInfo* info, int size, int isTop)
+// displayTopRiders: to display top riders in the category
+void displayTopRiders(struct RiderInfo* info, int size)
 {
 	char category;
 	int i, count = 0;
 
 	category = getCategory();
 	displayHeadertoplast();
-	isTop ? sortRiders(info, size) : resortRiders(info, size);
 
 	for (i = 0; i < size; i++)
 	{
-		if (info[i].raceLength == category && count < 3 && !info[i].withdrawn)
+		if (info[i].raceLength == category && count < RIDER_NUMBER && !info[i].withdrawn)
 		{
 			diplayRider(&info[i], 0);
 			count++;
@@ -303,10 +306,36 @@ void displayThreeRiders(struct RiderInfo* info, int size, int isTop)
 	}
 }
 
+// displayLastRiders: to display last riders in the category
+void displayLastRiders(struct RiderInfo* info, int size)
+{
+	char category;
+	int i, count = 0;
+	int index[RIDER_NUMBER];
+
+	category = getCategory();
+	displayHeadertoplast();
+
+	for (i = size - 1; i >= 0; i--)
+	{
+		if (info[i].raceLength == category && count < RIDER_NUMBER && !info[i].withdrawn)
+		{
+			index[count] = i;
+			count++;
+		}
+	}
+
+	for (i = RIDER_NUMBER; i > 0; i--)
+	{
+		diplayRider(&info[index[i - 1]], 0);
+	}
+}
+
 // diplayRider: to display a rider
 void diplayRider(const struct RiderInfo* info, int category)
 {
 	int hour = 0, minute = 0;
+
 	printf("%-21s", info->name);
 	printf("%9s", getAgeGroup(info->age));
 	if (category)
@@ -332,26 +361,6 @@ void sortRiders(struct RiderInfo* info, int size)
 				temp = info[i];
 				info[i] = info[j];
 				info[j] = temp;
-			}
-		}
-	}
-}
-
-// resortRiders: reverse sort
-void resortRiders(struct RiderInfo* info, int size)
-{
-	int i, j;
-	struct RiderInfo temp;
-
-	for (i = 0; i < size - 1; i++)
-	{
-		for (j = i + 1; j < size; j++)
-		{
-			if (info[i].raceTime < info[j].raceTime)
-			{
-				temp = info[j];
-				info[j] = info[i];
-				info[i] = temp;
 			}
 		}
 	}

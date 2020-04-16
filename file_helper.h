@@ -73,17 +73,17 @@ char* checkWithdraw(int withdraw);
 // displayAllriders: to display all riders in the category
 void displayAllriders(struct RiderInfo* info, int size);
 
-// displayThreeRiders: to display top or last 3 riders in the category
-void displayThreeRiders(struct RiderInfo* info, int size, int isTop);
+// displayTopRiders: to display top riders in the category
+void displayTopRiders(struct RiderInfo* info, int size);
+
+// displayLastRiders: to display last riders in the category
+void displayLastRiders(struct RiderInfo* info, int size);
 
 // diplayRider: to display a rider
 void diplayRider(const struct RiderInfo* info, int category);
 
 // sortRiders 
 void sortRiders(struct RiderInfo* info, int size);
-
-// resortRiders: reverse sort
-void resortRiders(struct RiderInfo* info, int size);
 
 // diplayWinners: to display winners in all category
 void diplayWinners(const struct RiderInfo* info, int size);

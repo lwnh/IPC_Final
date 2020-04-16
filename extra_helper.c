@@ -27,6 +27,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "extra_helper.h"
 
+#define RIDER_NUMBER 3
+
 // clearKeyboard: clear input buffer
 void clearKeyboard(void)
 {
@@ -147,9 +149,9 @@ int menu(void)
 {
 	printf("What would you like to do?\n");
 	printf("0 - Exit\n");
-	printf("1 - Print top 3 riders in a category\n");
+	printf("1 - Print top %d riders in a category\n", RIDER_NUMBER);
 	printf("2 - Print all riders in a category\n");
-	printf("3 - Print last 3 riders in a category\n");
+	printf("3 - Print last %d riders in a category\n", RIDER_NUMBER);
 	printf("4 - Print winners in all categories\n");
 	printf(": ");
 
