@@ -64,7 +64,7 @@ char* getAgeGroup(int age);
 // convertTime: to convert time readability
 void convertTime(double time, int* hour, int* minute);
 
-// getRaceTime : to store calculated race time
+// getRaceTime: to store calculated race time
 void setRaceTime(struct RiderInfo* info, int size);
 
 // checkWithdraw: to check out whether or not athletes withdrew
@@ -79,20 +79,20 @@ void displayTopriders(struct RiderInfo* info, int size);
 // displayLastriders: to display last 3 riders in the category
 void displayLastriders(struct RiderInfo* info, int size);
 
-// diplayRider : to display only one rider
-void diplayRider(struct RiderInfo* info, int category);
+// diplayRider: to display a rider
+void diplayRider(const struct RiderInfo* info, int category);
 
 // sortRiders 
 void sortRiders(struct RiderInfo* info, int size);
 
-// RsortRiders : reverse sort
+// RsortRiders: reverse sort
 void RsortRiders(struct RiderInfo* info, int size);
 
-// to display winners in all category
-void diplayWinners(struct RiderInfo* info, int size);
+// diplayWinners: to display winners in all category
+void diplayWinners(const struct RiderInfo* info, int size);
 
-// to display a winner
-void displayWinner(struct RiderInfo* info, int size, char category);
+// displayWinner: to display a winner
+void displayWinner(const struct RiderInfo* info, int size, char category);
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /*!!!        DO NOT ALTER THE CONTENTS BELOW       !!!*/

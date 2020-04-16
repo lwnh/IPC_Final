@@ -145,6 +145,7 @@ void raceManagerSystem(void)
 	}
 }
 
+// fileLoad
 int fileLoad(struct RiderInfo* info, int size)
 {
 	int flag = 0, i;
@@ -236,7 +237,7 @@ void convertTime(double time, int* hour, int* minute)
 	*minute = (int)((time - *hour) * 60);
 }
 
-// setRaceTime : to store calculated race time
+// setRaceTime: to store calculated race time
 void setRaceTime(struct RiderInfo* info, int size)
 {
 	int i;
@@ -246,6 +247,7 @@ void setRaceTime(struct RiderInfo* info, int size)
 	}
 }
 
+// checkWithdraw: to check out whether or not athletes withdrew
 char* checkWithdraw(int withdraw)
 {
 	return withdraw == 1 ? "Yes" : "No";
@@ -321,8 +323,8 @@ void displayLastriders(struct RiderInfo* info, int size)
 	}
 }
 
-// diplayRider : to display only one rider
-void diplayRider(struct RiderInfo* info, int category)
+// diplayRider: to display a rider
+void diplayRider(const struct RiderInfo* info, int category)
 {
 	int hour = 0, minute = 0;
 	printf("%-21s", info->name);
@@ -355,6 +357,7 @@ void sortRiders(struct RiderInfo* info, int size)
 	}
 }
 
+// RsortRiders: reverse sort
 void RsortRiders(struct RiderInfo* info, int size)
 {
 	int i, j;
@@ -374,7 +377,17 @@ void RsortRiders(struct RiderInfo* info, int size)
 	}
 }
 
-void displayWinner(struct RiderInfo* info, int size, char category)
+// diplayWinners: to display winners in all category
+void diplayWinners(const struct RiderInfo* info, int size)
+{
+	displayHeaderwinner();
+	displayWinner(info, size, 'S');
+	displayWinner(info, size, 'M');
+	displayWinner(info, size, 'L');
+}
+
+// displayWinner: to display a winner
+void displayWinner(const struct RiderInfo* info, int size, char category)
 {
 	int i, winner = 0, flag = 0;
 
@@ -408,13 +421,4 @@ void displayWinner(struct RiderInfo* info, int size, char category)
 	{
 		diplayRider(&info[winner], LONG_DISTANCE);
 	}
-}
-
-// to display winners in all category
-void diplayWinners(struct RiderInfo* info, int size)
-{
-	displayHeaderwinner();
-	displayWinner(info, size, 'S');
-	displayWinner(info, size, 'M');
-	displayWinner(info, size, 'L');
 }
