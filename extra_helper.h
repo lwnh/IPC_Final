@@ -29,9 +29,6 @@
 // clearKeyboard: clear input buffer
 void clearKeyboard(void);
 
-// pause: to ask users whether to proceed to next step by pushing the enter button
-void pause(void);
-
 // getInt: to make sure if users input demical number
 int getInt(void);
 

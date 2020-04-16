@@ -107,28 +107,20 @@ void raceManagerSystem(void)
 			printf("\n");
 			displayTopRiders(info, MAXRECORDS);
 			printf("\n");
-			pause();
-			printf("\n");
 			break;
 		case 2:
 			printf("\n");
 			displayAllriders(info, MAXRECORDS);
-			printf("\n");
-			pause();
 			printf("\n");
 			break;
 		case 3:
 			printf("\n");
 			displayLastRiders(info, MAXRECORDS);
 			printf("\n");
-			pause();
-			printf("\n");
 			break;
 		case 4:
 			printf("\n");
 			diplayWinners(info, MAXRECORDS);
-			printf("\n");
-			pause();
 			printf("\n");
 			break;
 		case 0:

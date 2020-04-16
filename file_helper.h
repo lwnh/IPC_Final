@@ -27,7 +27,7 @@
 #include <string.h>
 #include <ctype.h>
 
-   //define the number of best or worst
+   //define the number of top or last
 #define RIDER_NUMBER 3
 
 /********************************************************/

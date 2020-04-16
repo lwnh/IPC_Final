@@ -33,13 +33,6 @@ void clearKeyboard(void)
 	while (getchar() != '\n'); // empty execution code block on purpose
 }
 
-// pause: to ask users whether to proceed to next step by pushing the enter button
-void pause(void)
-{
-	printf("(Press Enter to Continue)");
-	clearKeyboard();
-}
-
 // getInt: to make sure if users input demical number
 int getInt(void)
 {
