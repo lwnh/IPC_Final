@@ -58,8 +58,8 @@ char getCategory(void);
 // checkCategory: to check if the input-word is between s/S, m/M, l/L 
 char checkCategory(void);
 
-// determineAgeGroup
-char* determineAgeGroup(int age);
+// getAgeGroup
+char* getAgeGroup(int age);
 
 // convertTime: to convert time readability
 void convertTime(double time, int* hour, int* minute);
