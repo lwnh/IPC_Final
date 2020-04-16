@@ -93,62 +93,49 @@ void raceManagerSystem(void)
 	struct RiderInfo info[MAXRECORDS] = { {{'\0'}} };
 	int flag = fileLoad(info, MAXRECORDS);
 
-
 	while (flag)
 	{
 		switch (menu())
 		{
 		case 1:
-
 			printf("\n");
 			displayTopriders(info, MAXRECORDS);
 			printf("\n");
 			pause();
 			printf("\n");
 			break;
-
 		case 2:
-
 			printf("\n");
 			displayAllriders(info, MAXRECORDS);
 			printf("\n");
 			pause();
 			printf("\n");
 			break;
-
 		case 3:
-
 			printf("\n");
 			displayLastriders(info, MAXRECORDS);
 			printf("\n");
 			pause();
 			printf("\n");
 			break;
-
 		case 4:
-
 			printf("\n");
 			diplayWinners(info, MAXRECORDS);
 			printf("\n");
 			pause();
 			printf("\n");
 			break;
-
 		case 0:
-
 			printf("\n");
 			printf("Exit the program? (Y)es/(N)o: ");
 
 			if (yes())
 			{
 				printf("\n");
-				printf("Race Management System: terminated\n");
+				printf("Race Management System: terminated");
 				flag = 0;
 			}
-			else
-			{
-				printf("\n");
-			}
+			printf("\n");
 			break;
 		}
 	}
@@ -182,39 +169,22 @@ int fileLoad(struct RiderInfo* info, int size)
 	return flag;
 }
 
-// determineCategory: to prompt users to choose one of the categories
-char determineCategory(void)
+// getCategory: to prompt users to choose one of the categories
+char getCategory(void)
 {
-	char category = '\0';
-
 	printf("Which category (S, M, L): ");
-	switch (checkCategory())
-	{
-	case 0:
-		category = 'S';
-		break;
-	case 1:
-		category = 'M';
-		break;
-	case 2:
-		category = 'L';
-		break;
-	}
-	printf("\n");
-
-	return category;
+	return checkCategory();
 }
 
 // checkCategory: to check if the input-word is between s/S, m/M, l/L 
-int checkCategory(void)
+char checkCategory(void)
 {
-	char input, inputNL;
-	int flag = 1, category;
+	char input, inputNL, category = '\0';
+	int flag = 1;
 
 	while (flag)
 	{
 		scanf("%c%c", &input, &inputNL);
-
 
 		if (inputNL != '\n')
 		{
@@ -228,21 +198,10 @@ int checkCategory(void)
 		else
 		{
 			flag = 0;
-			if (input == 's' || input == 'S')
-			{
-				category = 0;
-			}
-			else if (input == 'm' || input == 'M')
-			{
-				category = 1;
-			}
-			else
-			{
-				category = 2;
-			}
+			category = toupper(input);
 		}
 	}
-
+	printf("\n");
 	return category;
 }
 
@@ -306,7 +265,7 @@ void displayAllriders(struct RiderInfo* info, int size)
 	char category;
 	int i, hour = 0, minute = 0;
 
-	category = determineCategory();
+	category = getCategory();
 	displayHeaderall();
 	sortRiders(info, size);
 
@@ -336,7 +295,7 @@ void displayTopriders(struct RiderInfo* info, int size)
 	char category;
 	int i, hour = 0, minute = 0, count = 0;
 
-	category = determineCategory();
+	category = getCategory();
 	displayHeadertoplast();
 	sortRiders(info, size);
 
@@ -379,7 +338,7 @@ void displayLastriders(struct RiderInfo* info, int size)
 	char category;
 	int i, hour = 0, minute = 0, count = 0;
 
-	category = determineCategory();
+	category = getCategory();
 	displayHeadertoplast();
 	RsortRiders(info, size);
 

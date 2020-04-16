@@ -25,6 +25,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 /********************************************************/
 /* Define the missing members for the RiderInfo data    */
@@ -51,11 +52,11 @@ void raceManagerSystem(void);
 // fileLoad
 int fileLoad(struct RiderInfo* info, int size);
 
-// determineCategory: to prompt users to choose one of the categories
-char determineCategory(void);
+// getCategory: to prompt users to choose one of the categories
+char getCategory(void);
 
 // checkCategory: to check if the input-word is between s/S, m/M, l/L 
-int checkCategory(void);
+char checkCategory(void);
 
 // determineAgeGroup
 char* determineAgeGroup(int age);
@@ -78,9 +79,10 @@ void displayTopriders(struct RiderInfo* info, int size);
 // displayLastriders: to display last 3 riders in the category
 void displayLastriders(struct RiderInfo* info, int size);
 
-// sortRiders
+// sortRiders 
 void sortRiders(struct RiderInfo* info, int size);
 
+// RsortRiders : reverse sort
 void RsortRiders(struct RiderInfo* info, int size);
 
 // to display the winner in the S length
