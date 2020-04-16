@@ -28,7 +28,7 @@
 #include "file_helper.h"
 #include "extra_helper.h"
 
-//define the maximum number of records
+   //define the maximum number of records
 #define MAXRECORDS 5000
 
 #define SHORT_DISTANCE 50
@@ -103,7 +103,7 @@ void raceManagerSystem(void)
 		{
 		case 1:
 			printf("\n");
-			displayTopriders(info, MAXRECORDS);
+			displayThreeRiders(info, MAXRECORDS, 1);
 			printf("\n");
 			pause();
 			printf("\n");
@@ -117,7 +117,7 @@ void raceManagerSystem(void)
 			break;
 		case 3:
 			printf("\n");
-			displayLastriders(info, MAXRECORDS);
+			displayThreeRiders(info, MAXRECORDS, 0);
 			printf("\n");
 			pause();
 			printf("\n");
@@ -283,35 +283,15 @@ void displayAllriders(struct RiderInfo* info, int size)
 	}
 }
 
-// displayTopriders: to display top 3 riders in the category
-void displayTopriders(struct RiderInfo* info, int size)
+// displayThreeRiders: to display top or last 3 riders in the category
+void displayThreeRiders(struct RiderInfo* info, int size, int isTop)
 {
 	char category;
 	int i, count = 0;
 
 	category = getCategory();
 	displayHeadertoplast();
-	sortRiders(info, size);
-
-	for (i = 0; i < size; i++)
-	{
-		if (info[i].raceLength == category && count < 3 && !info[i].withdrawn)
-		{
-			diplayRider(&info[i], 0);
-			count++;
-		}
-	}
-}
-
-// displayLastriders: to display last 3 riders in the category
-void displayLastriders(struct RiderInfo* info, int size)
-{
-	char category;
-	int i, count = 0;
-
-	category = getCategory();
-	displayHeadertoplast();
-	RsortRiders(info, size);
+	isTop ? sortRiders(info, size) : resortRiders(info, size);
 
 	for (i = 0; i < size; i++)
 	{
@@ -357,8 +337,8 @@ void sortRiders(struct RiderInfo* info, int size)
 	}
 }
 
-// RsortRiders: reverse sort
-void RsortRiders(struct RiderInfo* info, int size)
+// resortRiders: reverse sort
+void resortRiders(struct RiderInfo* info, int size)
 {
 	int i, j;
 	struct RiderInfo temp;
@@ -412,7 +392,7 @@ void displayWinner(const struct RiderInfo* info, int size, char category)
 	if (category == 'S')
 	{
 		diplayRider(&info[winner], SHORT_DISTANCE);
-	} 
+	}
 	else if (category == 'M')
 	{
 		diplayRider(&info[winner], MEDIUM_DISTANCE);
