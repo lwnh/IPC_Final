@@ -120,7 +120,7 @@ void raceManagerSystem(void)
 			break;
 		case 4:
 			printf("\n");
-			diplayWinners(info, MAXRECORDS);
+			displayWinners(info, MAXRECORDS);
 			printf("\n");
 			break;
 		case 0:
@@ -289,7 +289,7 @@ void displayTopRiders(struct RiderInfo* info, int size)
 	{
 		if (info[i].raceLength == category && count < RIDER_NUMBER && !info[i].withdrawn)
 		{
-			diplayRider(&info[i], 0);
+			displayRider(&info[i], 0);
 			count++;
 		}
 	}
@@ -316,7 +316,7 @@ void displayLastRiders(struct RiderInfo* info, int size)
 
 	for (i = RIDER_NUMBER; i > 0; i--)
 	{
-		diplayRider(&info[index[i - 1]], 0);
+		displayRider(&info[index[i - 1]], 0);
 	}
 }
 
@@ -389,14 +389,14 @@ void displayWinner(const struct RiderInfo* info, int size, char category)
 	}
 	if (category == 'S')
 	{
-		diplayRider(&info[winner], SHORT_DISTANCE);
+		displayRider(&info[winner], SHORT_DISTANCE);
 	}
 	else if (category == 'M')
 	{
-		diplayRider(&info[winner], MEDIUM_DISTANCE);
+		displayRider(&info[winner], MEDIUM_DISTANCE);
 	}
 	else
 	{
-		diplayRider(&info[winner], LONG_DISTANCE);
+		displayRider(&info[winner], LONG_DISTANCE);
 	}
 }
